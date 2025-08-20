@@ -15,6 +15,9 @@ public class StreamPractice {
         // String List for string-based stream operations
         List<String> listOfStrings = Arrays.asList("apple", "banana", "apple", "grapes", "orange", "banana", "kiwi");
 
+        List<Integer> lista=Arrays.asList(1,2,3,4,5,7,9);
+        List<Integer> listb=Arrays.asList(2,3,6,5,7,8);
+
         //List for reverse order
         List<Integer> sortlist = List.of(1, 2, 3, 4, 5, 6);
 
@@ -174,22 +177,37 @@ public class StreamPractice {
              );
 //----------------------------------------------------------------------------------------
        System.out.println("Sort list of strings in increasing order of their length.");
-                 List<String> lenSortedList= listOfStrings.stream()
+                    List<String> lenSortedList= listOfStrings.stream()
                         .distinct()
                         .sorted(Comparator.comparing(String::length))
                         .collect(Collectors.toList());
                 System.out.println(lenSortedList);
 //----------------------------------------------------------------------------------------
-//        Find common elements between two arrays.
+       System.out.println("common elements between two arrays.");
+                lista.stream()
+                .filter(listb::contains)
+                .forEach(System.out::println);
+//----------------------------------------------------------------------------------------
+       System.out.println("sum and average of all elements of an array.");
+                System.out.println(Arrays.stream(inputArray).average().getAsDouble());
+                System.out.println(Arrays.stream(inputArray).sum());
+//----------------------------------------------------------------------------------------
+       System.out.println("Reverse each word of a string: \"Java 8 Stream API Questions\"");
 
-//        Find sum and average of all elements of an array.
-
-//        Reverse each word of a string.
-
-//        Find sum of first 10 natural numbers.
-
-//        Reverse an integer array.
-
+                String result=Arrays.stream(str.split(" "))
+                        .map(word->new StringBuilder(word).reverse().toString())
+                        .collect(Collectors.joining());
+                System.out.println(result);
+//----------------------------------------------------------------------------------------
+       System.out.println("sum of first 10 natural numbers.");
+                System.out.println(IntStream.range(1,11).sum());
+//----------------------------------------------------------------------------------------
+      System.out.println(" Reverse an integer array.");
+                 int[] reversed= IntStream.rangeClosed(1, inputArray.length)
+                        .map(i->inputArray[inputArray.length-i])
+                        .toArray();
+                 System.out.println(Arrays.toString(reversed));
+//----------------------------------------------------------------------------------------
 //        Check if a string is a palindrome.
 
 //        Find strings that start with a number.
