@@ -32,6 +32,7 @@ class Student {
     }
 }
 
+// Wissen Java 8 Collection - List to Map
 class TestCollection {
     public static void main(String args[]) {
         List<Student> studentList = new ArrayList<>();
