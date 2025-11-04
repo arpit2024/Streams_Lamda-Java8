@@ -14,6 +14,22 @@ class Student {
         this.id = id;
         this.name = name;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
 
 class TestCollection {
@@ -24,14 +40,29 @@ class TestCollection {
         studentList.add(new Student(3, "Tisha"));
         studentList.add(new Student(3, "Ishana"));
 
+        // ✅ Approach 1: Normal for-each (using HashMap)
         Map<Integer, String> studentMap = new HashMap<>();
-        // Add the Code Changes After This
 
+        for (Student s : studentList) {
+            // If duplicate key exists, overwrite or handle however you want
+            studentMap.put(s.getId(), s.getName());
+        }
 
+        System.out.println("Normal Map Output:");
+        studentMap.forEach((id, name) ->
+                System.out.println("Student ID : " + id + ", Student Name : " + name));
 
+        // ✅ Approach 2: Java 8 Streams
+        // Using toMap with a merge function to handle duplicate keys
+        Map<Integer, String> studentMapStream = studentList.stream()
+                .collect(Collectors.toMap(
+                        Student::getId,
+                        Student::getName,
+                        (oldValue, newValue) -> newValue // keep latest on duplicate
+                ));
 
-
-        studentMap.forEach(
-                (x, y) -> System.out.println("Student ID : " + x + ", Student Name : " + y));
+        System.out.println("\nStream Map Output:");
+        studentMapStream.forEach((id, name) ->
+                System.out.println("Student ID : " + id + ", Student Name : " + name));
     }
 }
