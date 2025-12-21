@@ -8,110 +8,67 @@ T = length of target word
 YOUR SOLUTION (STREAM + SORT APPROACH)
 
 High-level steps:
-
 Compute Levenshtein distance for each dictionary word
-
 Store (word, editDistance) pairs in a list
-
 Sort the list using:
 
 Primary key: edit distance
-
 Secondary key: word length
-
 Return the first element
 
 Time Complexity:
-
 Edit distance per word = O(L × T)
-
 For N words = O(N × L × T)
-
 Sorting N elements = O(N log N)
 
 Total Time Complexity:
 O(N × L × T + N log N)
 
 Space Complexity:
-
 DP table per word = O(L × T)
-
 Dictionary list storage = O(N)
 
 Total Space Complexity:
 O(L × T + N)
 
 ChatGPT SOLUTION (SINGLE PASS MIN TRACKING)
-
 High-level steps:
-
 For each word:
-
 Compute edit distance
-
 Compare with current minimum
-
 Update answer immediately (no sorting)
-
 Return best word
 
 Time Complexity:
-
 Edit distance per word = O(L × T)
-
 For N words = O(N × L × T)
-
 No sorting
 
 Total Time Complexity:
 O(N × L × T)
 
 Space Complexity:
-
 DP table = O(L × T)
-
 No extra list
 
 Total Space Complexity:
 O(L × T)
 
-WHICH SOLUTION IS BETTER?
-
+WHICH SOLUTION IS BETTER
 Winner: SINGLE PASS MIN TRACKING APPROACH(ChatGpt)
 
 Reasons:
-
 Avoids sorting (O(N log N) overhead)
-
 Uses less auxiliary memory
-
 it does not store the elements or Levenshtein val of all, instead it calculates dynamically
-
 Faster for large dictionaries
-
 Preferred in interviews due to clarity and efficiency
 
-Your solution is:
-
-Absolutely correct
-
-Clean and readable
-
-Slightly less optimal due to sorting
-
-Interviewers will still accept it, but may ask:
-"Can you do this without sorting?"
-
 WHEN IS YOUR APPROACH ACCEPTABLE?
-
 Your approach is fine when:
-
 N is small
-
 Readability is prioritized
-
 You want clean functional-style code
-
 Interview is not strict on micro-optimizations
 
 
@@ -120,38 +77,26 @@ Is there an EVEN MORE OPTIMIZED approach?
 ✅ Yes — Space Optimized DP (Advanced but impressive)
 1)
 You can optimize space from O(L × T) → O(min(L, T))
-
 Idea:
-
 Edit distance DP only depends on:
-
 previous row
-
 current row
-
 So we can use two 1D arrays instead of a full matrix
 
 Optimized Space Complexity
 O(min(L, T))
-
 Time Complexity (same)
 O(N × L × T)
-
 
 This is gold-level interview optimization, but not always required unless asked.
 
 
 2) EARLY EXIT / PRUNING
-
 If current edit distance exceeds known minimum,
 stop computation early.
-
 Useful when:
-
 Dictionary is large
-
 Close match is found early
-
 
 Best Interview Answer:
 Single-pass solution with DP-based Levenshtein distance
