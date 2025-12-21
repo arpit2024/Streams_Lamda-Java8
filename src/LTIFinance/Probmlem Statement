@@ -1,0 +1,93 @@
+PROBLEM STATEMENT
+
+You are given a dictionary of words and a target word.
+Your task is to find the word from the dictionary that is closest to the target word based on the Levenshtein distance.
+
+Levenshtein distance is defined as the minimum number of single-character operations required to convert one string into another.
+The allowed operations are:
+
+Insert a character
+
+Delete a character
+
+Replace a character
+
+Rules:
+
+Compute the Levenshtein distance between the target word and each word in the dictionary.
+
+Select the word with the minimum Levenshtein distance.
+
+If multiple words have the same minimum distance, return the word with the smallest length.
+
+The dictionary will not contain the exact target word.
+
+FUNCTION SIGNATURE
+
+solve(int n, String[] words, String target)
+
+Inputs:
+n -> Number of words in the dictionary
+words -> Array of dictionary words
+target -> Target word to compare against
+
+Output:
+Return the dictionary word that best matches the target based on the rules above.
+
+EXAMPLE
+
+Input:
+n = 5
+words = ["cart", "care", "cards", "scar", "car"]
+target = "cars"
+
+Levenshtein distance calculations:
+
+cart -> 1 operation (replace 's' with 't')
+care -> 1 operation (replace 's' with 'e')
+cards -> 1 operation (insert 'd')
+scar -> 2 operations
+car -> 1 operation (delete 's')
+
+Minimum distance = 1
+
+Words with distance = 1:
+cart (length 4)
+care (length 4)
+cards (length 5)
+car (length 3)
+
+Shortest word among them = "car"
+
+Output:
+"car"
+
+WHAT IS LEVENSHTEIN DISTANCE (SIMPLE EXPLANATION)
+
+Levenshtein distance measures how different two strings are by counting the minimum number of edits required to make them the same.
+
+Each edit is one of the following:
+
+Insert a character
+
+Delete a character
+
+Replace a character
+
+Example:
+Convert "car" to "cars"
+
+Operation:
+Insert 's' at the end
+
+Levenshtein distance = 1
+
+Another example:
+Convert "cart" to "cars"
+
+Operation:
+Replace 't' with 's'
+
+Levenshtein distance = 1
+
+Lower distance means the words are more similar.
